@@ -21,11 +21,11 @@ func wpflow(src io.Reader, dest io.Writer) {
 func linesIn(src io.Reader) chan string {
 	out := make(chan string)
 	go func() {
+		defer close(out)
 		scanner := bufio.NewScanner(src)
 		for scanner.Scan() {
 			out <- scanner.Text()
 		}
-		close(out)
 	}()
 	return out
 }
