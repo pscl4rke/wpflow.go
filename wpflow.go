@@ -13,7 +13,8 @@ func main() {
 }
 
 func wpflow(src io.Reader, dest io.Writer) {
-	for line := range linesIn(src) {
+	for pair := range PeekStrings(linesIn(src)) {
+		line := pair.Current
 		fmt.Fprintln(dest, line)
 	}
 }
