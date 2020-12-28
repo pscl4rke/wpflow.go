@@ -2,7 +2,7 @@ package main
 
 type StringPair struct {
 	Current string
-	Next string
+	Next    string
 }
 
 func PeekStrings(src chan string) chan StringPair {
