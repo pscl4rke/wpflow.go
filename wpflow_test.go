@@ -20,6 +20,12 @@ func TestShortParagraphs(t *testing.T) {
 	assertWpflow(t, input, expected)
 }
 
+func TestLongParagraphs(t *testing.T) {
+	input := "one\ntwo\n\nthree\nfour\n"
+	expected := "one two\n\nthree four\n"
+	assertWpflow(t, input, expected)
+}
+
 func TestCodeSnippets(t *testing.T) {
 	input := "one\n\n    foo\n    bar\n\nthree\n"
 	expected := input

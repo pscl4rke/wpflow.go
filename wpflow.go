@@ -14,8 +14,8 @@ func main() {
 
 func wpflow(src io.Reader, dest io.Writer) {
 	for pair := range PeekStrings(linesIn(src)) {
-		line := pair.Current
-		fmt.Fprintln(dest, line)
+		fmt.Fprint(dest, pair.Current)
+		fmt.Fprint(dest, separatorBetween(pair))
 	}
 }
 
@@ -29,4 +29,17 @@ func linesIn(src io.Reader) chan string {
 		}
 	}()
 	return out
+}
+
+func separatorBetween(pair StringPair) string {
+	if pair.Current == "" {
+		return "\n"
+	}
+	if pair.Next == "" {
+		return "\n"
+	}
+	if pair.Next[0] == ' ' {
+		return "\n"
+	}
+	return " "
 }
